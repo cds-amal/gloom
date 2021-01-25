@@ -67,7 +67,7 @@ contract('Escrow', accounts => {
   it('should accept correct token transfer from the seller', async () => {
     const tx = await escrowInstance.sellerDelivery({ from: seller });
     truffleAssert.eventEmitted(tx, 'LogSellerDelivered', event => {
-      assert.deepEqual(event.tokenAmount, tokenAmount, 'incorrect transfer amount');
+      assert(event.tokenAmount.eq(tokenAmount), 'incorrect transfer amount');
       return event.seller === seller;
     });
   });
