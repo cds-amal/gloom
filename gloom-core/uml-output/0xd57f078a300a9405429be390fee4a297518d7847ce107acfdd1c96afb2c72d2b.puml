@@ -1,0 +1,40 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0xd57f078a300a9405429be390fee4a297518d7847ce107acfdd1c96afb2c72d2b
+
+
+actor EOA as "EOA"
+participant undefined_01 as "undefined_01"
+participant Auction_01 as "Auction_01"
+
+"EOA" -[#green]-> "undefined_01" : $ { 1000000000.0 GWEI }
+"undefined_01" -> "Auction_01" ++: receiveSellerDeposit()
+"Auction_01" -> "Auction_01" ++: receiveSellerDeposit()
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "undefined_01" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x4aa2D6F71E8892e8Ddf764344e46c339C6085820 |
+<#FEFECE>| undefined_01 | undefined | 0x1fbe6a2326718AB7DD5359467920A766C78cc5a7 |
+<#FEFECE>| Auction_01 | Auction | 0x65378459b9380a0feb31EA857992afbA146e95CD |
+endlegend
+
+@enduml

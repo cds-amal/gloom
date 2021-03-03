@@ -1,0 +1,79 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x4a355cd512b2f33c2d076e27efa73a3cd416fac7f948e3a3f3f6053a33f9a0be
+
+
+actor EOA as "EOA"
+participant AuctionFactory_01 as "AuctionFactory_01"
+participant ProxyFactory_01 as "ProxyFactory_01"
+participant undefined_01 as "undefined_01"
+participant Auction_01 as "Auction_01"
+participant Initializable_01 as "Initializable_01"
+
+"EOA" -> "AuctionFactory_01" ++: createAuction(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | logic | 0x9221b7F7AFB96adBBEE4bc6D003Cc6f598ACdEA3 |\n\
+| uint | tokenAmount | 100000000000000000000 |\n\
+| address | tokenContractAddress | 0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e |\n\
+) { 0.0 GWEI }
+"AuctionFactory_01" -> "ProxyFactory_01" ++: deployMinimal(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | _logic | 0x9221b7F7AFB96adBBEE4bc6D003Cc6f598ACdEA3 |\n\
+| bytes | _data | hex'c350a1b500000000000000000000000008e93c4bacceba7510d63b89e4c8496f6c8b34a40000000000000000000000000000000000000000000000056bc75e2d631000000000000000000000000000000bc529c00c6401aef6d220be8c6ea1667f6ad93e' |\n\
+) { 0.0 GWEI }
+"ProxyFactory_01" -> "undefined_01" ++: constructor()
+"undefined_01" -> "ProxyFactory_01" --: 
+"ProxyFactory_01" -[#green]-> "undefined_01" : $ { 0.0 GWEI }
+"undefined_01" -> "Auction_01" ++: initialize(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | _seller | 0x08e93c4BAccEBA7510d63b89E4c8496F6C8B34A4 |\n\
+| uint | _tokenAmount | 100000000000000000000 |\n\
+| address | _tokenContractAddress | 0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: initialize(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | _seller | 0x08e93c4BAccEBA7510d63b89E4c8496F6C8B34A4 |\n\
+| uint | _tokenAmount | 100000000000000000000 |\n\
+| address | _tokenContractAddress | 0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Initializable_01" ++: isConstructor()
+"Initializable_01" -> "Auction_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | false |\n\
+)
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "undefined_01" --: 
+"ProxyFactory_01" -> "AuctionFactory_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | proxy | 0xCA86598f3386C6C94dfACf23cAab371FB5AFB04b |\n\
+)
+"AuctionFactory_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x08e93c4BAccEBA7510d63b89E4c8496F6C8B34A4 |
+<#FEFECE>| AuctionFactory_01 | AuctionFactory | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| ProxyFactory_01 | ProxyFactory | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| undefined_01 | undefined | 0xCA86598f3386C6C94dfACf23cAab371FB5AFB04b |
+<#FEFECE>| Auction_01 | Auction | 0x9221b7F7AFB96adBBEE4bc6D003Cc6f598ACdEA3 |
+<#FEFECE>| Initializable_01 | Initializable | 0x9221b7F7AFB96adBBEE4bc6D003Cc6f598ACdEA3 |
+endlegend
+
+@enduml

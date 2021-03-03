@@ -1,0 +1,72 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x9a14787b96729725f6556b79278195207ed494ba29acbdb8e65cdd206e8da694
+
+
+actor EOA as "EOA"
+participant AuctionFactory_01 as "AuctionFactory_01"
+participant Pausable_01 as "Pausable_01"
+participant Context_01 as "Context_01"
+participant PauserRole_01 as "PauserRole_01"
+participant Roles_01 as "Roles_01"
+
+"EOA" -> "AuctionFactory_01" ++: pauseFactory()
+"AuctionFactory_01" -> "Pausable_01" ++: pause()
+"Pausable_01" -> "Context_01" ++: _msgSender()
+"Context_01" -> "Pausable_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address |  | 0x2F75bb5114567a73FD6EC34e441253797E52b58a |\n\
+)
+"Pausable_01" -> "PauserRole_01" ++: isPauser(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | account | 0x2F75bb5114567a73FD6EC34e441253797E52b58a |\n\
+) { 0.0 GWEI }
+"PauserRole_01" -> "Roles_01" ++: has(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| struct | role | { bearer: Map {} } |\n\
+| address | account | 0x2F75bb5114567a73FD6EC34e441253797E52b58a |\n\
+) { 0.0 GWEI }
+"Roles_01" -> "PauserRole_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | true |\n\
+)
+"PauserRole_01" -> "Pausable_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | true |\n\
+)
+"Pausable_01" -> "Context_01" ++: _msgSender()
+"Context_01" -> "Pausable_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address |  | 0x2F75bb5114567a73FD6EC34e441253797E52b58a |\n\
+)
+"Pausable_01" -> "AuctionFactory_01" --: 
+"AuctionFactory_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x2F75bb5114567a73FD6EC34e441253797E52b58a |
+<#FEFECE>| AuctionFactory_01 | AuctionFactory | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| Pausable_01 | Pausable | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| Context_01 | Context | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| PauserRole_01 | PauserRole | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+<#FEFECE>| Roles_01 | Roles | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+endlegend
+
+@enduml

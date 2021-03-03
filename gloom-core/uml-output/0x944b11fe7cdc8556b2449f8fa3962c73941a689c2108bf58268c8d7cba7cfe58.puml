@@ -1,0 +1,66 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x944b11fe7cdc8556b2449f8fa3962c73941a689c2108bf58268c8d7cba7cfe58
+
+
+actor EOA as "EOA"
+participant AuctionFactory_01 as "AuctionFactory_01"
+participant Context_01 as "Context_01"
+participant PauserRole_01 as "PauserRole_01"
+participant Roles_01 as "Roles_01"
+
+"EOA" -> "AuctionFactory_01" ++: constructor()
+"AuctionFactory_01" -> "Context_01" ++: _msgSender()
+"Context_01" -> "AuctionFactory_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address |  | 0xD53928Aea7C44739d7A87E66DB98cDef35b44bdB |\n\
+)
+"AuctionFactory_01" -> "PauserRole_01" ++: _addPauser(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | account | 0xD53928Aea7C44739d7A87E66DB98cDef35b44bdB |\n\
+) { 0.0 GWEI }
+"PauserRole_01" -> "Roles_01" ++: add(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| struct | role | { bearer: Map {} } |\n\
+| address | account | 0xD53928Aea7C44739d7A87E66DB98cDef35b44bdB |\n\
+) { 0.0 GWEI }
+"Roles_01" -> "Roles_01" ++: has(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| struct | role | { bearer: Map {} } |\n\
+| address | account | 0xD53928Aea7C44739d7A87E66DB98cDef35b44bdB |\n\
+) { 0.0 GWEI }
+"Roles_01" -> "Roles_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | false |\n\
+)
+"Roles_01" -> "PauserRole_01" --: 
+"PauserRole_01" -> "AuctionFactory_01" --: 
+"AuctionFactory_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0xD53928Aea7C44739d7A87E66DB98cDef35b44bdB |
+<#FEFECE>| AuctionFactory_01 | AuctionFactory | 0xaAdA30Eb01716d02Bd21A86D3b69CA78Fa742C61 |
+<#FEFECE>| Context_01 | Context | 0xaAdA30Eb01716d02Bd21A86D3b69CA78Fa742C61 |
+<#FEFECE>| PauserRole_01 | PauserRole | 0xaAdA30Eb01716d02Bd21A86D3b69CA78Fa742C61 |
+<#FEFECE>| Roles_01 | Roles | 0xaAdA30Eb01716d02Bd21A86D3b69CA78Fa742C61 |
+endlegend
+
+@enduml

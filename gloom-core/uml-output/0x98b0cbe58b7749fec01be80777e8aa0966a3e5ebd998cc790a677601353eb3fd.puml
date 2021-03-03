@@ -1,0 +1,73 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x98b0cbe58b7749fec01be80777e8aa0966a3e5ebd998cc790a677601353eb3fd
+
+
+actor EOA as "EOA"
+participant undefined_01 as "undefined_01"
+participant Auction_01 as "Auction_01"
+participant AuctionFactory_01 as "AuctionFactory_01"
+
+"EOA" -[#green]-> "undefined_01" : $ { 0.0 GWEI }
+"undefined_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | [ 0x67C9683f137D94c589f677B47B8957bC5dA723FE ] |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | [ 0x67C9683f137D94c589f677B47B8957bC5dA723FE ] |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: inviteBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x67C9683f137D94c589f677B47B8957bC5dA723FE |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: isInvitedBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x67C9683f137D94c589f677B47B8957bC5dA723FE |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | false |\n\
+)
+"Auction_01" -> "Auction_01" ++: registerBidderAtFactory(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x67C9683f137D94c589f677B47B8957bC5dA723FE |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "AuctionFactory_01" ++: registerBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidder | 0x67C9683f137D94c589f677B47B8957bC5dA723FE |\n\
+) { 0.0 GWEI }
+"AuctionFactory_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "undefined_01" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x08e93c4BAccEBA7510d63b89E4c8496F6C8B34A4 |
+<#FEFECE>| undefined_01 | undefined | 0xCA86598f3386C6C94dfACf23cAab371FB5AFB04b |
+<#FEFECE>| Auction_01 | Auction | 0x9221b7F7AFB96adBBEE4bc6D003Cc6f598ACdEA3 |
+<#FEFECE>| AuctionFactory_01 | AuctionFactory | 0xAf9798905714E8F781A06D08C5172e1Ed1620Bc0 |
+endlegend
+
+@enduml

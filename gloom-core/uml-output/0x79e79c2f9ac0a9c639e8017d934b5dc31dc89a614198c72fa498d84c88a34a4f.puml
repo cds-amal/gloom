@@ -1,0 +1,41 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x79e79c2f9ac0a9c639e8017d934b5dc31dc89a614198c72fa498d84c88a34a4f
+
+
+actor EOA as "EOA"
+participant Escrow_01 as "Escrow_01"
+
+"EOA" -> "Escrow_01" ++: sellerWithdraw()
+"Escrow_01" -> "Escrow_01" ++: bothOk()
+"Escrow_01" -> "Escrow_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | true |\n\
+)
+"Escrow_01" -[#green]-> "EOA" : $ { 1000000000.0 GWEI }
+"Escrow_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x736c200178e105405a1708FB4EcFedcB1b1ac5BE |
+<#FEFECE>| Escrow_01 | Escrow | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |
+endlegend
+
+@enduml

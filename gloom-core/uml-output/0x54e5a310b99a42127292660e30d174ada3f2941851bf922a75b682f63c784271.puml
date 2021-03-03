@@ -1,0 +1,96 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x54e5a310b99a42127292660e30d174ada3f2941851bf922a75b682f63c784271
+
+
+actor EOA as "EOA"
+participant Escrow_01 as "Escrow_01"
+participant MikeToken_01 as "MikeToken_01"
+participant Context_01 as "Context_01"
+participant ERC20_01 as "ERC20_01"
+participant SafeMath_01 as "SafeMath_01"
+
+"EOA" -> "Escrow_01" ++: buyerWithdraw()
+"Escrow_01" -> "Escrow_01" ++: bothOk()
+"Escrow_01" -> "Escrow_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | true |\n\
+)
+"Escrow_01" -> "MikeToken_01" ++: balanceOf(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | account | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |\n\
+) { 0.0 GWEI }
+"MikeToken_01" -> "Escrow_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint |  | 100000000000000000000 |\n\
+)
+"Escrow_01" -> "MikeToken_01" ++: transfer(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | recipient | 0xfeB9e9b0CDD97c1aD2343715001FF7818DA5a000 |\n\
+| uint | amount | 100000000000000000000 |\n\
+) { 0.0 GWEI }
+"MikeToken_01" -> "Context_01" ++: _msgSender()
+"Context_01" -> "MikeToken_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address |  | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |\n\
+)
+"MikeToken_01" -> "ERC20_01" ++: _transfer(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | sender | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |\n\
+| address | recipient | 0xfeB9e9b0CDD97c1aD2343715001FF7818DA5a000 |\n\
+| uint | amount | 100000000000000000000 |\n\
+) { 0.0 GWEI }
+"ERC20_01" -> "SafeMath_01" ++: sub(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | a | 100000000000000000000 |\n\
+| uint | b | 100000000000000000000 |\n\
+| string | errorMessage | 'ERC20: transfer amount exceeds balance' |\n\
+) { 0.0 GWEI }
+"SafeMath_01" -> "ERC20_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint |  | 0 |\n\
+)
+"ERC20_01" -> "SafeMath_01" ++: add(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | a | 0 |\n\
+| uint | b | 100000000000000000000 |\n\
+) { 0.0 GWEI }
+"SafeMath_01" -> "ERC20_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint |  | 100000000000000000000 |\n\
+)
+"ERC20_01" -> "MikeToken_01" --: 
+"MikeToken_01" -> "Escrow_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | true |\n\
+)
+"Escrow_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0xfeB9e9b0CDD97c1aD2343715001FF7818DA5a000 |
+<#FEFECE>| Escrow_01 | Escrow | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |
+<#FEFECE>| MikeToken_01 | MikeToken | 0x2b65C5404dFBF876957EF1839a14cF132aEf9140 |
+<#FEFECE>| Context_01 | Context | 0x2b65C5404dFBF876957EF1839a14cF132aEf9140 |
+<#FEFECE>| ERC20_01 | ERC20 | 0x2b65C5404dFBF876957EF1839a14cF132aEf9140 |
+<#FEFECE>| SafeMath_01 | SafeMath | 0x2b65C5404dFBF876957EF1839a14cF132aEf9140 |
+endlegend
+
+@enduml

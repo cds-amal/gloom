@@ -1,0 +1,53 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x6ad1c5775b76bfb9506fc453c319bd800c2efe84e971d996542b84918561b1b8
+
+
+actor EOA as "EOA"
+participant undefined_01 as "undefined_01"
+participant Auction_01 as "Auction_01"
+
+"EOA" -[#green]-> "undefined_01" : $ { 0.0 GWEI }
+"undefined_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c, |\n\
+|  |  | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c, |\n\
+|  |  | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" x-[#red]-> "EOA" --: <&warning> <color #red>**REVERT!**</color> (\n\
+<#FEFECE,#FEFECE>| string |  | 'Sender not authorized' |\n\
+)
+deactivate "Auction_01"
+deactivate "Auction_01"
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x203d27a0AC36fEb6e7bdE9256DC45804FB874e77 |
+<#FEFECE>| undefined_01 | undefined | 0xDb06A9E66E6DfB7C4557B6310203A9493953f4DA |
+<#FEFECE>| Auction_01 | Auction | 0x65378459b9380a0feb31EA857992afbA146e95CD |
+endlegend
+
+@enduml

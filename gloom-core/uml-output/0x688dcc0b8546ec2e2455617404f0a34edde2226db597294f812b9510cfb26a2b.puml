@@ -1,0 +1,98 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0x688dcc0b8546ec2e2455617404f0a34edde2226db597294f812b9510cfb26a2b
+
+
+actor EOA as "EOA"
+participant undefined_01 as "undefined_01"
+participant Auction_01 as "Auction_01"
+participant AuctionFactory_01 as "AuctionFactory_01"
+
+"EOA" -[#green]-> "undefined_01" : $ { 0.0 GWEI }
+"undefined_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c, |\n\
+|  |  | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: setupBidders(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| uint | _bidderDeposit | 1000000000000000000 |\n\
+| array | _bidderAddresses | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c, |\n\
+|  |  | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: inviteBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: isInvitedBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | false |\n\
+)
+"Auction_01" -> "Auction_01" ++: registerBidderAtFactory(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "AuctionFactory_01" ++: registerBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidder | 0x1838BbE94ac853f3DE6Dd7105B665Ad1b59d930c |\n\
+) { 0.0 GWEI }
+"AuctionFactory_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" ++: inviteBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" ++: isInvitedBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "Auction_01" --: Return (\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| bool |  | false |\n\
+)
+"Auction_01" -> "Auction_01" ++: registerBidderAtFactory(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidderAddress | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"Auction_01" -> "AuctionFactory_01" ++: registerBidder(\n\
+<#FEFECE,#FEFECE>|= type |= name |= value |\n\
+| address | bidder | 0x675b34DAb2Fc085D42FB69c01f506AAfaa3B5043 |\n\
+) { 0.0 GWEI }
+"AuctionFactory_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "Auction_01" --: 
+"Auction_01" -> "undefined_01" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x4aa2D6F71E8892e8Ddf764344e46c339C6085820 |
+<#FEFECE>| undefined_01 | undefined | 0xC6105D3a41cC62f10F914bb731c15191aeA91Ab1 |
+<#FEFECE>| Auction_01 | Auction | 0x65378459b9380a0feb31EA857992afbA146e95CD |
+<#FEFECE>| AuctionFactory_01 | AuctionFactory | 0x55a8402D05ad0215D9921898D22c2AF82f303abf |
+endlegend
+
+@enduml

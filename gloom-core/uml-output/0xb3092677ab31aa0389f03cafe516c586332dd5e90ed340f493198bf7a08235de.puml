@@ -1,0 +1,38 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0xb3092677ab31aa0389f03cafe516c586332dd5e90ed340f493198bf7a08235de
+
+
+actor EOA as "EOA"
+participant Escrow_01 as "Escrow_01"
+
+"EOA" -> "Escrow_01" ++: buyerPayment()
+"Escrow_01" x-[#red]-> "EOA" --: <&warning> <color #red>**REVERT!**</color> (\n\
+<#FEFECE,#FEFECE>| string |  | 'Sender not authorized' |\n\
+)
+deactivate "Escrow_01"
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0x31d88A7d55a75c78d988103E075C6842f3Cb3128 |
+<#FEFECE>| Escrow_01 | Escrow | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |
+endlegend
+
+@enduml

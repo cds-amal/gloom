@@ -1,0 +1,35 @@
+
+
+@startuml
+
+autonumber
+skinparam legendBackgroundColor #FEFECE
+
+<style>
+      header {
+        HorizontalAlignment left
+        FontColor purple
+        FontSize 14
+        Padding 10
+      }
+    </style>
+
+header Insights by Truffle
+
+title Txn Hash: 0xc4cb7a1f3f060fe9c0fbb56e5be9a3d657e4006b7a681954409da9e9b8a27a16
+
+
+actor EOA as "EOA"
+participant Escrow_01 as "Escrow_01"
+
+"EOA" -> "Escrow_01" ++: buyerPayment()
+"Escrow_01" -> "EOA" --: 
+
+legend
+Participant details
+<#FEFECE,#D0D000>|= Alias |= Contract name |= Address |
+<#FEFECE>| EOA | Externally Owned Account | 0xfeB9e9b0CDD97c1aD2343715001FF7818DA5a000 |
+<#FEFECE>| Escrow_01 | Escrow | 0x0c3329B9831E6A2fe595Ecba59865B3EE4Ca1592 |
+endlegend
+
+@enduml
